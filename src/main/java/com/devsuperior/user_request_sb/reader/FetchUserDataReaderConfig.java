@@ -36,10 +36,10 @@ public class FetchUserDataReaderConfig implements ItemReader<UserDTO> {
 	private List<UserDTO> users = new ArrayList<>();
 	private int userIndex = 0;
 	
-	@Value("$chunkSize")
+	@Value("${chunkSize}")
 	private int chunkSize;
 	
-	@Value("$pageSize")
+	@Value("${pageSize}")
 	private int pageSize;
 				
 	@Override
