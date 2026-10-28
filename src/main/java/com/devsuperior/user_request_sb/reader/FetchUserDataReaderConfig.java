@@ -1,5 +1,6 @@
 package com.devsuperior.user_request_sb.reader;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +11,8 @@ import org.springframework.batch.core.annotation.AfterChunk;
 import org.springframework.batch.core.annotation.BeforeChunk;
 import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.infrastructure.item.ItemReader;
+import org.springframework.batch.infrastructure.item.NonTransientResourceException;
+import org.springframework.batch.infrastructure.item.UnexpectedInputException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.ParameterizedTypeReference;
@@ -40,7 +43,7 @@ public class FetchUserDataReaderConfig implements ItemReader<UserDTO> {
 	private int pageSize;
 				
 	@Override
-	public @Nullable UserDTO read() throws Exception {
+	public UserDTO read() throws Exception , UnexpectedInputException, ParseException, NonTransientResourceException {
 		UserDTO user;
 		if (userIndex < users.size())
 			user = users.get(userIndex);
